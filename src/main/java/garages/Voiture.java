@@ -47,8 +47,6 @@ public class Voiture {
 	 * @throws java.lang.Exception si la voiture n'est pas dans un garage
 	 */
 	public void sortDuGarage() throws Exception {
-		// throw new UnsupportedOperationException("Pas encore implémenté");
-		// TODO: Implémenter cette méthode
 		// Trouver le dernier stationnement de la voiture
 		// Terminer ce stationnement
                 if (!estDansUnGarage()) {
@@ -64,9 +62,7 @@ public class Voiture {
 	 * @return l'ensemble des garages visités par cette voiture
 	 */
 	public Set<Garage> garagesVisites() {
-		// TODO: Implémenter cette méthode
-		// throw new UnsupportedOperationException("Pas encore implémenté");
-                return myGarages; // Ne doit pas retouner les doublons ?? ==> PROBLEME
+                return myGarages;
 	}
 
 	/**
@@ -102,14 +98,11 @@ public class Voiture {
 		// TODO: Implémenter cette méthode
 		// throw new UnsupportedOperationException("Pas encore implémenté");
                 myStationnements.stream().forEach((stationnement) -> {
-                //for (Stationnement stationnement : myStationnements) {
                     Garage garage = stationnement.getGarage();
-                    String message = String.format("Garage " + garage.getName() + 
-                        " : Stationnement{ entree=%s, %s }",
-                        stationnement.getEntree(),
-			stationnement.estEnCours() ? "en cours" : "sortie=" + stationnement.getFin());
+                    String message = stationnement.toString();
+                    out.println(garage);
                     out.println(message);
                 });
-	}
+        }
 
 }

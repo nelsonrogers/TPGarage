@@ -7,6 +7,7 @@ public class Voiture {
 
 	private final String immatriculation;
 	private final List<Stationnement> myStationnements = new LinkedList<>();
+        private final Set<Garage> myGarages = new HashSet<>();
 
 	public Voiture(String i) {
 		if (null == i) {
@@ -35,6 +36,7 @@ public class Voiture {
                 else {
                     Stationnement s = new Stationnement(this, g);
                     myStationnements.add(s);
+                    myGarages.add(g);
                 }
 	}
 
@@ -64,8 +66,7 @@ public class Voiture {
 	public Set<Garage> garagesVisites() {
 		// TODO: Implémenter cette méthode
 		// throw new UnsupportedOperationException("Pas encore implémenté");
-                Set garages = Set.copyOf(myStationnements);
-                return garages; // Ne doit pas retouner les doublons ==> PROBLEME
+                return myGarages; // Ne doit pas retouner les doublons ?? ==> PROBLEME
 	}
 
 	/**

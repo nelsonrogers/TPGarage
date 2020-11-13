@@ -11,7 +11,8 @@ public class Main {
 		v1.entreAuGarage(g2);
 		v1.sortDuGarage();
 		v1.entreAuGarage(g1);
+                System.out.println(v1.garagesVisites());
 		v1.imprimeStationnements(System.out);
 	}
-
+        
 }

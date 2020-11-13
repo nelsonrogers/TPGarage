@@ -53,8 +53,8 @@ public class Voiture {
                     throw new Exception("La voiture n'est pas dans un garage");
                 }
                 else {
-                Stationnement dernierStationnement = myStationnements.get(myStationnements.size() - 1);
-                dernierStationnement.terminer();
+                    Stationnement dernierStationnement = myStationnements.get(myStationnements.size() - 1);
+                    dernierStationnement.terminer();
                 }
 	}
 
@@ -65,7 +65,7 @@ public class Voiture {
 		// TODO: Implémenter cette méthode
 		// throw new UnsupportedOperationException("Pas encore implémenté");
                 Set garages = Set.copyOf(myStationnements);
-                return garages;
+                return garages; // Ne doit pas retouner les doublons ==> PROBLEME
 	}
 
 	/**
@@ -103,8 +103,8 @@ public class Voiture {
                 myStationnements.stream().forEach((stationnement) -> {
                 //for (Stationnement stationnement : myStationnements) {
                     Garage garage = stationnement.getGarage();
-                    String message = String.format(garage.getName() + 
-                        "Stationnement{ entree=%s, %s }",
+                    String message = String.format("Garage " + garage.getName() + 
+                        " : Stationnement{ entree=%s, %s }",
                         stationnement.getEntree(),
 			stationnement.estEnCours() ? "en cours" : "sortie=" + stationnement.getFin());
                     out.println(message);

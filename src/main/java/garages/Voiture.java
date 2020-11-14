@@ -95,13 +95,21 @@ public class Voiture {
 	 * @param out l'endroit où imprimer (ex: System.out)
 	 */
 	public void imprimeStationnements(PrintStream out) {
-		// TODO: Implémenter cette méthode
-		// throw new UnsupportedOperationException("Pas encore implémenté");
+                HashMap<Garage, List<Stationnement>> hashMap = new HashMap<Garage, List<Stationnement>>();
+                
                 myStationnements.stream().forEach((stationnement) -> {
-                    Garage garage = stationnement.getGarage();
-                    String message = stationnement.toString();
+                    if (!hashMap.containsKey(stationnement.getGarage())) {
+                    List<Stationnement> list = new ArrayList<Stationnement>();
+                    list.add(stationnement);
+
+                    hashMap.put(stationnement.getGarage(), list);
+                } else {
+                    hashMap.get(stationnement.getGarage()).add(stationnement);
+                }
+                });
+                garagesVisites().stream().forEach((garage) -> {
                     out.println(garage);
-                    out.println(message);
+                    out.println(hashMap.get(garage));
                 });
         }
 

@@ -30,7 +30,7 @@ public class Voiture {
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
 		// Et si la voiture est déjà dans un garage ?
-                if (estDansUnGarage()) {
+                if (estDansUnGarage()) { // Si la voiture est déjà dans un garage : Exception
                     throw new Exception("La voiture est déjà dans un garage");
                 }
                 else {
@@ -49,7 +49,7 @@ public class Voiture {
 	public void sortDuGarage() throws Exception {
 		// Trouver le dernier stationnement de la voiture
 		// Terminer ce stationnement
-                if (!estDansUnGarage()) {
+                if (!estDansUnGarage()) { // Si la voiture n'est pas dans un garage : Exception
                     throw new Exception("La voiture n'est pas dans un garage");
                 }
                 else {
@@ -69,15 +69,11 @@ public class Voiture {
 	 * @return vrai si la voiture est dans un garage, faux sinon
 	 */
 	public boolean estDansUnGarage() {
-		// TODO: Implémenter cette méthode
-		// throw new UnsupportedOperationException("Pas encore implémenté");
-		// Vrai si le dernier stationnement est en cours
                 if (myStationnements.size() > 0) {
                     Stationnement dernierStationnement = myStationnements.get(myStationnements.size() - 1);
                     return (dernierStationnement.estEnCours());
                 }
                 return false;
-                
 	}
 
 	/**
@@ -95,14 +91,17 @@ public class Voiture {
 	 * @param out l'endroit où imprimer (ex: System.out)
 	 */
 	public void imprimeStationnements(PrintStream out) {
-                HashMap<Garage, List<Stationnement>> hashMap = new HashMap<Garage, List<Stationnement>>();
-                
+                // On créé une HashMap de listes de stationnements ayant comme clé le garage correspondant
+                HashMap<Garage, List<Stationnement>> hashMap = new HashMap<>();
+                // On parcourt la liste des stationnements
                 myStationnements.stream().forEach((stationnement) -> {
+                    // On ajoute les garages en tant que clé avec le stationnement correspondant
                     if (!hashMap.containsKey(stationnement.getGarage())) {
-                    List<Stationnement> list = new ArrayList<Stationnement>();
+                    List<Stationnement> list = new ArrayList<>();
                     list.add(stationnement);
 
                     hashMap.put(stationnement.getGarage(), list);
+                    // Si la clé existe déjà, on ajoute le stationnement correspondant à la liste qui a cette clé
                 } else {
                     hashMap.get(stationnement.getGarage()).add(stationnement);
                 }

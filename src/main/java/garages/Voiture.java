@@ -97,16 +97,20 @@ public class Voiture {
                 myStationnements.stream().forEach((stationnement) -> {
                     // On ajoute les garages en tant que clé avec le stationnement correspondant
                     if (!hashMap.containsKey(stationnement.getGarage())) {
-                    List<Stationnement> list = new ArrayList<>();
-                    list.add(stationnement);
+                        List<Stationnement> list = new ArrayList<>();
+                        list.add(stationnement);
 
-                    hashMap.put(stationnement.getGarage(), list);
-                    // Si la clé existe déjà, on ajoute le stationnement correspondant à la liste qui a cette clé
-                } else {
-                    hashMap.get(stationnement.getGarage()).add(stationnement);
-                }
+                        hashMap.put(stationnement.getGarage(), list);
+                
+                    } 
+                    else { // Si la clé existe déjà, on ajoute le stationnement correspondant à la liste qui a cette clé
+                        hashMap.get(stationnement.getGarage()).add(stationnement);
+                    }
                 });
+                
+                
                 garagesVisites().stream().forEach((garage) -> {
+                    
                     out.println(garage);
                     out.println(hashMap.get(garage));
                 });
